@@ -1,0 +1,53 @@
+;; ==================== VARIABLES ====================
+;; O Eww vai rodar seu script Python e ler as atualizações de capa
+(deflisten lastfm_cover_path :initial "" "python /home/david/.config/eww/scripts/lastfm.py")
+
+;; Forçamos o sptlrx a não reter o texto (stdbuf) para as letras aparecerem na hora
+(deflisten current_lyric :initial "..." "stdbuf -i0 -o0 -e0 sptlrx pipe")
+
+
+;; ==================== WINDOWS ====================
+
+;; Widget da Capa do Last.fm e GIF (Canto Inferior Direito)
+(defwindow lastfm_bg
+  :monitor 0
+  :geometry (geometry :x "50px"
+                      :y "50px"
+                      :width "220px"
+                      :height "220px"
+                      :anchor "bottom right")
+  :stacking "bg"
+  :exclusive false
+  :focusable false
+  (box :class "cover-container"
+    (overlay
+      ;; 1. Mostra a capa real (via box com CSS)
+      (box :visible {lastfm_cover_path != "none"}
+           :class "cover-image"
+           :style "background-image: url('${lastfm_cover_path}');")
+
+      ;; 2. Mostra o GIF animado (via widget IMAGE nativo)
+      (image :visible {lastfm_cover_path == "none"}
+             :path "/home/david/lastfm_covers_cache/sem_capa/a.gif"
+             :image-width 220
+             :image-height 220)
+    )
+  ))
+
+;; Widget das Letras (Centro Inferior)
+(defwindow letras_bg
+  :monitor 0
+  :geometry (geometry :x "50px"
+                      :y "50px"
+                      :width "1000px"
+                      :height "100px"
+                      :anchor "bottom center")
+  :stacking "bg"
+  :exclusive false
+  :focusable false
+  (box :class "lyrics-container" :halign "center" :valign "center"
+    (label :text current_lyric
+           :wrap true
+           :justify "center"
+           :class "lyrics-text")
+  ))

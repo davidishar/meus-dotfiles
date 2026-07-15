@@ -1,0 +1,9 @@
+@import "config.rasi" 
+
+window {
+    width: 70%; 
+}
+
+listview {
+    lines: 7; 
+}

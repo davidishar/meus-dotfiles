@@ -1,0 +1,208 @@
+/* --- 1. CONFIGURAÇÃO GLOBAL --- */
+
+* {
+  all: unset;
+  font-size: 12px;
+  font-family: "JetBrainsMono Nerd Font", "Ubuntu Nerd Font", sans-serif;
+  transition: 200ms;
+  font-weight: bold;
+}
+
+/* --- 2. ANTI-CINZA --- */
+
+/* Mata o fundo cinza da lista GTK padrão */
+list > row,
+list > row:focus,
+list > row:selected,
+list > row:hover {
+    background: transparent;
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Mata a caixa cinza de agrupamento */
+.notification-group,
+.notification-group:focus,
+.notification-group:focus-within {
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+    border: none;
+    margin-top: 5px;
+}
+
+/* Estilo do cabeçalho do grupo (Ex: "Spotify") */
+.notification-group-header {
+    color: #ffffff; /* BRANCO PURO (Selecionado/Destaque) */
+    margin: 5px 10px;
+}
+
+/* Botão de fechar o grupo */
+.notification-group-icon-button {
+    background: transparent;
+    color: #a0a0a0; /* CINZA CLARO (Não selecionado) */
+}
+.notification-group-icon-button:hover {
+    color: #ffffff; /* BRANCO PURO ao passar o mouse */
+}
+
+/* --- 3. PAINEL CENTRAL (CONTROL CENTER) --- */
+.control-center {
+    background: rgba(17, 17, 17, 0.85); /* Fundo Carvão Transparente (Vidro) */
+    border: 1px solid rgba(200, 200, 200, 0.4); /* Borda fina prateada/cinza clara */
+    border-radius: 12px; /* Arredondamento do sistema */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    padding: 14px;
+    color: #a0a0a0; /* CINZA CLARO */
+}
+
+/* Títulos do Painel */
+.control-center .widget-title > label {
+    color: #ffffff; /* BRANCO PURO */
+    font-size: 1.3em;
+    margin-bottom: 5px;
+}
+
+/* Botão "Limpar" e outros no topo */
+.control-center .widget-title button {
+    background: transparent;
+    color: #a0a0a0;
+    border: 1px solid rgba(200, 200, 200, 0.4);
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.control-center .widget-title button:hover {
+    background: rgba(255, 255, 255, 0.12); /* Fundo translúcido de destaque */
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+/* --- 4. CARTÕES DE NOTIFICAÇÃO --- */
+.notification-background {
+    background: rgba(0, 0, 0, 0.50); /* Leve contraste translúcido para o cartão */
+    border: 1px solid rgba(200, 200, 200, 0.4);
+    border-radius: 12px;
+    margin: 6px 10px;
+    padding: 5px;   
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* Garante transparência interna */
+.notification-background .notification {
+    background: transparent;
+    padding: 5px;
+}
+
+/* Texto e Conteúdo */
+.notification-content .summary {
+    color: #ffffff; /* Título em Branco */
+    font-size: 1.1em;
+}
+
+.notification-content .body {
+    color: #a0a0a0; /* Texto secundário Cinza Claro */
+}
+
+.notification-content .time {
+    color: #606060; /* Hora usando a cor de placeholder (Cinza Escuro) */
+    margin-right: 10px;
+}
+
+/* Botão X da notificação */
+.notification-background .close-button {
+    background: transparent;
+    color: #a0a0a0;
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.notification-background .close-button:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff; /* Fica branco ao passar o mouse */
+}
+
+/* Ações (Botões: Responder, etc) */
+.notification .notification-action {
+    background: transparent;
+    border: 1px solid rgba(200, 200, 200, 0.4);
+    color: #a0a0a0;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+.notification .notification-action:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+/* --- 5. WIDGETS --- */
+
+/* Interruptor Não Perturbe */
+.widget-dnd {
+    margin: 10px 0;
+}
+.widget-dnd > switch {
+    background: rgba(255, 255, 255, 0.12); /* Fundo do botão desligado */
+    border-radius: 12px;
+}
+.widget-dnd > switch:checked {
+    background: #ffffff; /* Fundo branco ativado */
+}
+.widget-dnd > switch slider {
+    background: #111111; /* Bolinha do botão na cor do fundo para dar contraste */
+    border-radius: 50%;
+}
+
+/* --- 6. TRATAMENTO DE IMAGEM --- */
+
+/* Limpeza do container Overlay */
+.notification-content overlay {
+    background: transparent;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* 1. Sempre a primeira imagem do overlay */
+.notification-content overlay > image:first-child {
+    -gtk-icon-size: 50px;
+    margin: 0px 15px 0px 0px;
+    border: 1px solid rgba(200, 200, 200, 0.4);
+    border-radius: 8px; /* Arredondamento na imagem também */
+    opacity: 1;
+}
+
+/* 2. Qualquer imagem que NÃO seja a primeira */
+.notification-content overlay > image:not(:first-child) {
+    -gtk-icon-size: 1px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    border: none;
+    margin-left: 1px;
+}
+
+/* --- 7. BARRA DE ROLAGEM INVISÍVEL --- */
+
+scrollbar {
+    opacity: 0;
+    -gtk-icon-size: 1px;
+    background: transparent;
+}
+
+scrollbar trough,
+scrollbar slider {
+    background: transparent;
+    border: none;
+    opacity: 0;
+}
+
+/* Garante que nenhum botão de seta apareça */
+scrollbar button {
+    opacity: 0;
+}

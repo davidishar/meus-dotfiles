@@ -1,0 +1,46 @@
+* {
+    background-image: none;
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 16px; 
+    font-weight: bold;
+}
+
+/* Fundo da tela inteira: Cinza escuro esfumaçado e translúcido */
+window {
+    background-color: rgba(17, 17, 17, 0.85);
+}
+
+button {
+    color: #a0a0a0; /* Prata / Pergaminho */
+    background-color: rgba(17, 17, 17, 0.27); /* Fundo de vidro escuro */
+    border: 1px solid rgba(200, 200, 200, 0.4); /* Borda fina verde-musgo */
+    border-radius: 12px; /* Arredondamento padrão do seu sistema */
+    box-shadow: inset 0 0 0 1px transparent;
+    
+    /* AS TECLAS DE PIANO (Mantido da sua configuração original) */
+    margin: 10px 10px; 
+    
+    background-repeat: no-repeat;
+    background-position: center 35%; 
+    background-size: 25%; 
+    
+    padding-top: 100px; 
+    
+    transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Efeito ao passar o mouse: Vidro acende suavemente */
+button:focus, button:active, button:hover {
+    color: #ffffff; /* Texto fica verde-musgo */
+    background-color: rgba(255, 255, 255, 0.12); /* Fundo ganha um tom esverdeado */
+    border: 1px solid rgba(200, 200, 200, 0.4); /* Borda brilha */
+    outline-style: none;
+}
+
+/* --- ÍCONES --- */
+#lock { background-image: url("/home/david/.local/share/wlogout/icons/lock.png"); }
+#hibernate { background-image: url("/home/david/.local/share/wlogout/icons/hibernate.png"); }
+#logout { background-image: url("/home/david/.local/share/wlogout/icons/logout.png"); }
+#suspend { background-image: url("/home/david/.local/share/wlogout/icons/suspend.png"); }
+#reboot { background-image: url("/home/david/.local/share/wlogout/icons/reboot.png"); }
+#shutdown { background-image: url("/home/david/.local/share/wlogout/icons/shutdown.png"); }

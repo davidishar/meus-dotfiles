@@ -1,0 +1,110 @@
+configuration {
+    modi:                       "drun";
+    show-icons:                 true;
+    display-drun:               "";
+    drun-display-format:        "{name}";
+    font:                       "JetBrainsMono Nerd Font Bold 11";
+
+    /* --- CORREÇÃO DO TOUCHPAD / MOUSE --- */
+    hover-select:               false;     
+    me-select-entry:            "";            
+    me-accept-entry:            "MousePrimary";
+    
+    scroll-method:              1;     
+}
+
+* {
+    /* --- CORES DO ESTILO VIDRO --- */
+    /* Fundo da Janela (Cinza muito escuro e translúcido, quase carvão) */
+    bg-col:                     rgba(17, 17, 17, 0.85); 
+    /* Borda Prateada / Cinza clara */
+    border-col:                 rgba(200, 200, 200, 0.4); 
+    
+    /* Cores do Texto */
+    color-unselected:           #a0a0a0;   /* CINZA CLARO (Não selecionado) */
+    color-selected:             #ffffff;   /* BRANCO PURO (Selecionado) */
+    
+    /* Reset Global */
+    background-color:           transparent;
+    text-color:                 @color-unselected;
+}
+
+window {
+    transparency:               "real";
+    background-color:           @bg-col;
+    text-color:                 @color-unselected;
+    border:                     1px; /* Borda fina acompanhando o Hyprland */
+    border-color:               @border-col;
+    border-radius:              0px; /* Exatamente o mesmo arredondamento do resto do sistema */
+    width:                      450px;
+    location:                   center;
+    anchor:                     center;
+}
+
+mainbox {
+    background-color:           transparent;
+    children:                   [ inputbar, listview ];
+    spacing:                    10px;
+    padding:                    15px;
+}
+
+inputbar {
+    background-color:           transparent;
+    children:                   [ entry ];
+}
+
+entry {
+    background-color:           transparent;
+    text-color:                 #ffffff; /* Texto que você digita fica em destaque */
+    placeholder:                "Digite para buscar...";
+    placeholder-color:          #606060;
+    vertical-align:             0.5;
+}
+
+listview {
+    background-color:           transparent;
+    columns:                    1;
+    lines:                      6;
+    spacing:                    5px;
+    cycle:                      false;
+    dynamic:                    true;
+    layout:                     vertical;
+    scrollbar:                  false;
+}
+
+element {
+    background-color:           transparent;
+    text-color:                 @color-unselected;
+    orientation:                horizontal;
+    border-radius:              8px; /* Arredondamento interno suave */
+    padding:                    8px;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color:           transparent;
+    text-color:                 @color-unselected;
+}
+
+/* --- ITEM SELECIONADO --- */
+element selected.normal {
+    background-color:           rgba(255, 255, 255, 0.12); /* Leve fundo translúcido para destacar */
+    text-color:                 @color-selected; 
+}
+
+/* Ícones e Texto */
+element-icon {
+    background-color:           transparent;
+    text-color:                 inherit;
+    size:                       32px;
+    cursor:                     inherit;
+    margin:                     0px 10px 0px 0px;
+}
+
+element-text {
+    background-color:           transparent;
+    text-color:                 inherit;
+    highlight:                  inherit;
+    cursor:                     inherit;
+    vertical-align:             0.5;
+}

@@ -1,0 +1,167 @@
+/* =============================================================================
+ * WAYBAR STYLE - Glass & Silver Theme
+ * ============================================================================= */
+
+/* --- 01. DEFINIÇÕES GERAIS E RESET --- */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Noto Color Emoji", "Noto Sans CJK JP", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 0;
+}
+
+/* --- 02. JANELA PRINCIPAL (BARRA) --- */
+window#waybar {
+    /* Fundo cinza translúcido ($inactive) */
+    background-color: rgba(17, 17, 17, 0.27); 
+    /* Borda clara destacada ($active) */
+    border: none;
+    border-radius: 0px; 
+    color: #ffffff;
+    
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/* --- 03. CONTAINERS DE MÓDULOS --- */
+.modules-left {
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.modules-right {
+    padding-right: 0px; 
+    margin-right: 10px;
+}
+
+/* Configuração base para todos os módulos */
+#workspaces,
+#mpris,
+#custom-notification,
+#clock,
+#custom-weather,
+#custom-spotify,
+#custom-palmeiras,
+#pulseaudio,
+#network,
+#bluetooth,
+#battery {
+    padding: 0 5px;
+    margin: 0 5px;
+    background-color: rgba(0,0,0,0);
+    color: #ffffff; 
+}
+
+#custom-glava {
+    padding: 0 0px;
+    margin: 0 10px;
+    background-color: rgba(0,0,0,0);
+    color: #ffffff; 
+}
+
+
+#workspaces button {
+    padding: 0 5px;
+    color: rgba(255, 255, 255, 0.45); /* Inativas: Cinza */
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+    transition: all 0.2s ease;
+}
+
+/* Bloqueia o fundo no Hover */
+#workspaces button:hover {
+    background: transparent;
+    color: #ffffff; /* Fica branco ao passar o mouse */
+    box-shadow: none;
+}
+
+/* Ativa: Branco Puro */
+#workspaces button.active {
+    background: transparent;
+    color: #ffffff;
+    box-shadow: none;
+}
+
+#workspaces button.urgent {
+    color: #ff0000;
+}
+
+/* --- 05. ESTADOS DE HARDWARE E REDE --- */
+#pulseaudio.muted,
+#network.disconnected {
+    color: rgba(255, 255, 255, 0.4); 
+}
+
+Bateria 
+#battery.charging {
+    color: #ffffff;
+}
+
+#battery.critical:not(.charging) {
+    color: #ff0000;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+
+/* --- 06. MÓDULOS CUSTOMIZADOS --- */
+#custom-glava {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0 0px;
+    letter-spacing: 0px;
+}
+
+#custom-glava.active {
+    color: #ffffff;
+}
+
+/* Spotify */
+#custom-spotify {
+    color: #ffffff; /* Verde do Spotify */
+    transition: opacity 0.3s ease;
+}
+
+/* Quando estiver ativo (janela aberta) */
+#custom-spotify.active {
+    opacity: 1.0;
+}
+
+/* Quando estiver inativo (janela fechada) */
+#custom-spotify.inactive {
+    opacity: 0.7; /* Deixa o ícone mais "apagado" */
+}
+
+/* --- 07. TOOLTIPS --- */
+tooltip {
+    background: rgba(17, 17, 17, 0.4);
+    border-radius: 0px;
+    border: 1px solid rgba(200, 200, 200, 0.4);
+}
+
+/* Remove fundos internos para evitar quinas pretas */
+tooltip * {
+    background: transparent;
+}
+
+tooltip label {
+    color: #ffffff;
+}
+
+/* --- 08. ANIMAÇÕES --- */
+@keyframes blink {
+    to {
+        color: #ffffff;
+    }
+}

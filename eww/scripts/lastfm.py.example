@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+import requests
+from PIL import Image
+from io import BytesIO
+import os
+import time
+import re
+
+USER = "" 
+API_KEY = ""
+TAMANHO_CAPA = 1280
+PASTA_CACHE = os.path.expanduser("~/lastfm_covers_cache")
+
+if not os.path.exists(PASTA_CACHE):
+    os.makedirs(PASTA_CACHE)
+
+def sanitizar_nome(nome):
+    return re.sub(r'[\\/*?:"<>|]', "", nome)
+
+def obter_musica_atual():
+    url = f"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user={USER}&api_key={API_KEY}&limit=1&format=json"
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        track = response.json()['recenttracks']['track'][0]
+        artista = track['artist']['#text']
+        album = track['album']['#text']
+        if not album:
+            album = track['name']
+            
+        img_url = track['image'][3]['#text'] 
+        
+        # O segredo está aqui: bloqueia a estrela cinza padrão do Last.fm
+        if not img_url or "2a96cbd8b46e442fc41c2b86b821562f" in img_url:
+            img_url = None
+            
+        return artista, album, img_url
+    except Exception:
+        return None, None, None
+
+if __name__ == "__main__":
+    musica_tocando_agora = ""
+    
+    while True:
+        artista, album, img_url = obter_musica_atual()
+        
+        if artista and album:
+            identificador = f"{artista} - {album}"
+            
+            if identificador != musica_tocando_agora:
+                
+                # Se existe uma capa de verdade
+                if img_url:
+                    nome_arquivo = sanitizar_nome(identificador) + ".png"
+                    caminho_img = os.path.join(PASTA_CACHE, nome_arquivo)
+                    
+                    if not os.path.exists(caminho_img):
+                        try:
+                            img_data = requests.get(img_url, timeout=10).content
+                            img = Image.open(BytesIO(img_data)).convert("RGB").resize((TAMANHO_CAPA, TAMANHO_CAPA), Image.LANCZOS)
+                            img.save(caminho_img, "PNG")
+                        except Exception:
+                            pass
+                    
+                    if os.path.exists(caminho_img):
+                        print(caminho_img, flush=True)
+                        musica_tocando_agora = identificador
+                        
+                # Se não tem capa, apenas imprime vazio para não manter a capa da música anterior
+                else:
+                    print("none", flush=True)
+                    musica_tocando_agora = identificador
+                    
+        time.sleep(5)

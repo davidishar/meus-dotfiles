@@ -1,0 +1,37 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+    "source": "arch_old"
+  },
+  "modules": [
+    "title",
+    "separator",
+    { "type": "os", "key": " Distro", "keyColor": "green" },
+    //{ "type": "host", "key": " PC", "keyColor": "white" },
+    { "type": "kernel", "key": " Kernel", "keyColor": "white" },
+    //{ "type": "uptime", "key": " Tempo", "keyColor": "white" },
+    { "type": "packages", "key": " Pacotes", "keyColor": "green" },
+    { "type": "shell", "key": " Shell", "keyColor": "white" },
+    //{ "type": "display", "key": "󰍹 Tela", "keyColor": "white" },
+    { "type": "de", "key": "󰧨 DE", "keyColor": "white" },
+    { "type": "wm", "key": " WM", "keyColor": "white" },
+    /*{ "type": "wmtheme", "key": "󰉼 Tema WM", "keyColor": "green" },*/
+    /*{ "type": "theme", "key": "󰉼 Tema GTK", "keyColor": "green" },*/
+    /*{ "type": "icons", "key": "󰀻 Ícones", "keyColor": "green" },*/
+    /*{ "type": "font", "key": " Fonte", "keyColor": "white" },*/
+    /*{ "type": "cursor", "key": "󰆿 Cursor", "keyColor": "white" },*/
+    //{ "type": "terminal", "key": " Terminal", "keyColor": "white" },
+    /*{ "type": "terminalfont", "key": " Fonte Term", "keyColor": "white" },*/
+    { "type": "cpu", "key": " CPU", "keyColor": "green" },
+    //{ "type": "gpu", "key": "󰢮 GPU", "keyColor": "green" },
+    { "type": "memory", "key": " RAM", "keyColor": "white" },
+    { "type": "swap", "key": "󰓡 Swap", "keyColor": "white" },
+    { "type": "disk", "key": " Disco", "keyColor": "white" },
+    /*{ "type": "localip", "key": "󰩟 IP Local", "keyColor": "green" },*/
+    //{ "type": "battery", "key": " Bateria", "keyColor": "yellow" },
+    { "type": "poweradapter", "key": " Fonte", "keyColor": "yellow" },
+    /*{ "type": "locale", "key": " Idioma", "keyColor": "white" },*/
+    "break",
+    "colors"
+  ]
+}
